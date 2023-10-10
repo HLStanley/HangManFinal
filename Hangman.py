@@ -51,9 +51,10 @@ HANMAN = ['''
       |
 =========''']
 #Categoreys you can select
-animals = []
-sports = []
-random_words = []
+animals = ["dog"]
+sports = ["john"]
+random_words = ["ok","hangman", "dogs"]
+word_list = []
 #Welcome and options
 print('WELCOME TO HANGMAN.')
 print('Choose a categorery')
@@ -67,6 +68,6 @@ if option == 'a':
 elif option =='s':
     word_list = sports
 else:
-    word_list = random
-#Chooses Word
-word = random.choice(word_list)
+    word_list = random_words
+
+word = random.choice(word_list) #Chooses the word
