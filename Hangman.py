@@ -69,4 +69,4 @@ elif option =='s':
 else:
     word_list = random
 #Chooses Word
-word = random(word_list)
+word = random.choice(word_list)
