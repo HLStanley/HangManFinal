@@ -1,6 +1,6 @@
 import random
 #ASCII art for hangman guesses
-HANMAN = ['''
+HANGMAN = ['''
   +---+
   |   |
       |
