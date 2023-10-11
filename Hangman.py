@@ -56,7 +56,8 @@ sports = ['basketball','football','soccer','hockey','rugby','tennis','golf','che
 random_words = ['wrathful','hippopotomonstrosesquippedaliophobia','supercalifragilisticexpialidocious','Monday','rocks','moon','magic','xerox','zero','alpha','random','hangman','zetta','market','hello','rain']
 word_list = []
 #Welcome and options
-print("""                                             
+print("""
+ _                                                       
 | |                                            
 | |__   __ _ _ __   __ _ _ __ ___   __ _ _ __  
 | '_ \ / _` | '_ \ / _` | '_ ` _ \ / _` | '_ \ 
@@ -89,3 +90,4 @@ def game_run(): #Main gameplay loop
   print("the word contains", len(word), 'letters')
   print()
   print(len(word) * '_')
+  
