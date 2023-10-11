@@ -51,12 +51,20 @@ HANMAN = ['''
       |
 =========''']
 #Categoreys you can select
-animals = ["dog"]
-sports = ["john"]
-random_words = ["ok","hangman", "dogs"]
+animals = ['cat','dog','rat','lizard','cow','kangaroo','human','monkey','buffalo','goose','raven','crow','quial','ostrich']
+sports = ['basketball','football','soccer','hockey','rugby','tennis','golf','chess','fencing','volleyball','handball','lacrosse']
+random_words = ['wrathful','hippopotomonstrosesquippedaliophobia','supercalifragilisticexpialidocious','Monday','rocks','moon','magic','xerox','zero','alpha','random','hangman','zetta','market','hello','rain']
 word_list = []
 #Welcome and options
-print('WELCOME TO HANGMAN.')
+print("""                                             
+| |                                            
+| |__   __ _ _ __   __ _ _ __ ___   __ _ _ __  
+| '_ \ / _` | '_ \ / _` | '_ ` _ \ / _` | '_ \ 
+| | | | (_| | | | | (_| | | | | | | (_| | | | |
+|_| |_|\__,_|_| |_|\__, |_| |_| |_|\__,_|_| |_|
+                    __/ |                      
+                   |___/                       """)
+print()
 print('Choose a categorery')
 print('A for animals')
 print('S for sports')
@@ -70,4 +78,14 @@ elif option =='s':
 else:
     word_list = random_words
 
-word = random.choice(word_list) #Chooses the word
+def game_run(): #Main gameplay loop
+  word = random.choice(word_list) #Chooses the word
+  alphabet = 'abcdefghijklmnopqrstuvwxyz'
+  letters_guessed = []
+  tries = 6
+  guessed = False
+  print()
+  print()
+  print("the word contains", len(word), 'letters')
+  print()
+  print(len(word) * '_')
