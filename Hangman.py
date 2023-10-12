@@ -95,8 +95,5 @@ def game_run(): #Main gameplay loop
   #guess loop
   while guessed == False:
     guess = input("Enter a letter: ").lower
-    if guess in letters_guessed:
-      print("Letter is guessed")
-    
     
 game_run()
