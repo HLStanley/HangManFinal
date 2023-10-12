@@ -90,4 +90,8 @@ def game_run(): #Main gameplay loop
   print("the word contains", len(word), 'letters')
   print()
   print(len(word) * '_')
-  
+  print(letters_guessed)
+  print(f"You have this many tries left {tries}")
+  #guess loop
+  while guessed == False:
+    
