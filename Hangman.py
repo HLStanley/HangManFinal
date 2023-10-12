@@ -50,7 +50,7 @@ HANGMAN = ['''
  / \  |
       |
 =========''']
-#Categoreys you can select
+#Categories you can select
 animals = ['cat','dog','rat','lizard','cow','kangaroo','human','monkey','buffalo','goose','raven','crow','quial','ostrich']
 sports = ['basketball','football','soccer','hockey','rugby','tennis','golf','chess','fencing','volleyball','handball','lacrosse']
 random_words = ['wrathful','hippopotomonstrosesquippedaliophobia','supercalifragilisticexpialidocious','Monday','rocks','moon','magic','xerox','zero','alpha','random','hangman','zetta','market','hello','rain']
@@ -66,12 +66,12 @@ print("""
                     __/ |                      
                    |___/                       """)
 print()
-print('Choose a categorery')
+print('Choose a category)
 print('A for animals')
 print('S for sports')
 print('R for random')
 option = input("Enter the category: ")
-#Wordlist is choosen
+#Wordlist is chosen
 if option == 'a':
     word_list = animals
 elif option =='s':
@@ -95,5 +95,63 @@ def game_run(): #Main gameplay loop
   #guess loop
   while guessed == False:
     guess = input("Enter a letter: ").lower
+
+def display_hangman(incorrect): #Displays hangman based on the amount of incorrect answers
+  if incorrect == 0:
+    print("\n  +---+  ")
+    print("  |   |  ")
+    print("      |  ")
+    print("      |  ")
+    print("      |  ")
+    print("      |  ")
+    print("=========")
+  elif incorrect == 1:
+    print("\n  +---+  ")
+    print("  |   |  ")
+    print("  O   |  ")
+    print("      |  ")
+    print("      |  ")
+    print("      |  ")
+    print("=========")
+  elif incorrect == 2:
+    print("\n  +---+  ")
+    print("  |   |  ")
+    print("  O   |  ")
+    print("  |   |  ")
+    print("      |  ")
+    print("      |  ")
+    print("=========")
+  elif incorrect == 3:
+    print("\n  +---+  ")
+    print("  |   |  ")
+    print("  O   |  ")
+    print(" /|   |  ")
+    print("      |  ")
+    print("      |  ")
+    print("=========")
+  elif incorrect == 4:
+    print("\n  +---+  ")
+    print("  |   |  ")
+    print("  O   |  ")
+    print(" /|\  |  ")
+    print("      |  ")
+    print("      |  ")
+    print("=========")
+  elif incorrect == 5:
+    print("\n  +---+  ")
+    print("  |   |  ")
+    print("  O   |  ")
+    print(" /|\  |  ")
+    print(" /    |  ")
+    print("      |  ")
+    print("=========")
+  elif incorrect == 6:
+    print("\n  +---+  ")
+    print("  |   |  ")
+    print("  O   |  ")
+    print(" /|\  |  ")
+    print(" / \  |  ")
+    print("      |  ")
+    print("=========")
     
 game_run()
