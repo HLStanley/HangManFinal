@@ -1,6 +1,5 @@
-
+import random
 while True:
-  import random
 
 #Categories you can select
   animals = ['cat','dog','rat','lizard','cow','kangaroo','human','monkey','buffalo','goose','raven','crow','quial','ostrich']
@@ -8,9 +7,35 @@ while True:
   random_words = ['wrathful','hippopotomonstrosesquippedaliophobia','supercalifragilisticexpialidocious','monday','rocks','moon','magic','xerox','zero','alpha','random','hangman','zetta','market','hello','rain']
   word_list = []
   guessed = False
-
+  
+  #Greeting
+  print("""
+   _                                                       
+  | |                                            
+  | |__   __ _ _ __   __ _ _ __ ___   __ _ _ __  
+  | '_ \ / _` | '_ \ / _` | '_ ` _ \ / _` | '_ \ 
+  | | | | (_| | | | | (_| | | | | | | (_| | | | |
+  |_| |_|\__,_|_| |_|\__, |_| |_| |_|\__,_|_| |_|
+                      __/ |                      
+                     |___/                       """)
+  print()
+  print('Choose a category')
+  print('A for animals')
+  print('S for sports')
+  print('R for random')
+  option = input("Enter the category: ")
+#Wordlist is chosen
+  if option.lower() == 'a':
+    word_list = animals
+  elif option.lower() =='s':
+    word_list = sports
+  elif option.lower() =='r':
+    word_list = random_words
+  else:
+    print("Error! Please only input a, s, or r to choose the category!")
+    break
+  word = random.choice(word_list)
 #Main gameplay loop
-      
   def game_run():
     alphabet = 'abcdefghijklmnopqrstuvwxyz'
     letters_guessed = []
@@ -46,6 +71,8 @@ while True:
         display_lines()
         if tries == 0:
           break
+    
+        
     
 #Displays lines underneath letters for clarity
   def display_lines():  
@@ -122,44 +149,15 @@ while True:
         else:
           print(" ", end = " ")
         counter += 1
-
-#Welcome and Category Selection
-  print("""
-   _                                                       
-  | |                                            
-  | |__   __ _ _ __   __ _ _ __ ___   __ _ _ __  
-  | '_ \ / _` | '_ \ / _` | '_ ` _ \ / _` | '_ \ 
-  | | | | (_| | | | | (_| | | | | | | (_| | | | |
-  |_| |_|\__,_|_| |_|\__, |_| |_| |_|\__,_|_| |_|
-                      __/ |                      
-                     |___/                       """)
-  print()
-  print('Choose a category')
-  print('A for animals')
-  print('S for sports')
-  print('R for random')
-  option = input("Enter the category: ")
-#Wordlist is chosen
-  if option.lower() == 'a':
-    word_list = animals
-  elif option.lower() =='s':
-    word_list = sports
-  elif option.lower() =='r':
-    word_list = random_words
-  else:
-    print("Error! Please only input a, s, or r to choose the category!")
-  word = random.choice(word_list)
-
   game_run()
-
-  if guessed is True:
+  #Win and Loose
+  if guessed == True:
     print(f"Congratulations, you win! The word was {word}!")
     print()
-    break
   else:
     print()
     print(f"Game over! The word was {word}!")
-  
+  #Try Again
   try_again = input("Press 1 to try again, 0 to exit. ")
   try:
       try_again = int(try_again)  # non-numeric input from user could otherwise crash at this point
