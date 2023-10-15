@@ -1,61 +1,126 @@
 import random
-#ASCII art for hangman guesses
-HANGMAN = ['''
-  +---+
-  |   |
-      |
-      |
-      |
-      |
-=========''', '''
-  +---+
-  |   |
-  O   |
-      |
-      |
-      |
-=========''', '''
-  +---+
-  |   |
-  O   |
-  |   |
-      |
-      |
-=========''', '''
-  +---+
-  |   |
-  O   |
- /|   |
-      |
-      |
-=========''', '''
-  +---+
-  |   |
-  O   |
- /|\  |
-      |
-      |
-=========''', '''
-  +---+
-  |   |
-  O   |
- /|\  |
- /    |
-      |
-=========''', '''
-  +---+
-  |   |
-  O   |
- /|\  |
- / \  |
-      |
-=========''']
-#Categoreys you can select
+
+#Categories you can select
 animals = ['cat','dog','rat','lizard','cow','kangaroo','human','monkey','buffalo','goose','raven','crow','quial','ostrich']
 sports = ['basketball','football','soccer','hockey','rugby','tennis','golf','chess','fencing','volleyball','handball','lacrosse']
 random_words = ['wrathful','hippopotomonstrosesquippedaliophobia','supercalifragilisticexpialidocious','Monday','rocks','moon','magic','xerox','zero','alpha','random','hangman','zetta','market','hello','rain']
 word_list = []
-#Welcome and options
+guessed = False
+
+#Main gameplay loop      
+def game_run():
+  alphabet = 'abcdefghijklmnopqrstuvwxyz'
+  letters_guessed = []
+  letters_correct = alphabet in word
+  tries = 6
+  guessed = False
+  display_hangman(6)
+  print()
+  print("The word contains", len(word), 'letters')
+  print()
+  display_lines()
+
+  #Guess loop
+  while not guessed:
+    print("\nLetters guessed thus far: ")
+    for letter in letters_guessed:
+      print(letter, end=" ")
+    print(f"\nYou have this many tries left: {tries}")
+  #User inputs letter  
+    guess = input("\nEnter a letter: ").lower()
+  #If user has a correct letter guess  
+    if guess in word:
+      display_hangman(tries)
+      letters_guessed.append(guess)
+      letters_correct = display_word(letters_guessed)
+      display_lines()
+  #If user has an incorrect letter guess
+    else:
+      tries -= 1
+      letters_guessed.append(guess)
+      display_hangman(tries)
+      letters_correct = display_word(letters_guessed)
+      display_lines()
+      if tries == 0:
+        break
+    
+#Displays lines underneath letters for clarity
+def display_lines():  
+    print("\r")
+    for char in word:
+      print("\u203E", end=" ")
+
+#Displays hangman ASCII art based on amount of incorrect answers
+def display_hangman(tries): 
+  if tries == 6:
+    print("\n  +---+  ")
+    print("  |   |  ")
+    print("      |  ")
+    print("      |  ")
+    print("      |  ")
+    print("      |  ")
+    print("=========")
+  elif tries == 5:
+    print("\n  +---+  ")
+    print("  |   |  ")
+    print("  O   |  ")
+    print("      |  ")
+    print("      |  ")
+    print("      |  ")
+    print("=========")
+  elif tries == 4:
+    print("\n  +---+  ")
+    print("  |   |  ")
+    print("  O   |  ")
+    print("  |   |  ")
+    print("      |  ")
+    print("      |  ")
+    print("=========")
+  elif tries == 3:
+    print("\n  +---+  ")
+    print("  |   |  ")
+    print("  O   |  ")
+    print(" /|   |  ")
+    print("      |  ")
+    print("      |  ")
+    print("=========")
+  elif tries == 2:
+    print("\n  +---+  ")
+    print("  |   |  ")
+    print("  O   |  ")
+    print(" /|\  |  ")
+    print("      |  ")
+    print("      |  ")
+    print("=========")
+  elif tries == 1:
+    print("\n  +---+  ")
+    print("  |   |  ")
+    print("  O   |  ")
+    print(" /|\  |  ")
+    print(" /    |  ")
+    print("      |  ")
+    print("=========")
+  elif tries == 0:
+    print("\n  +---+  ")
+    print("  |   |  ")
+    print("  O   |  ")
+    print(" /|\  |  ")
+    print(" / \  |  ")
+    print("      |  ")
+    print("=========")
+
+def display_word(letters_guessed):
+    counter = 0
+    correct_letters = 0
+    for char in word:
+      if(char in letters_guessed):
+        print(word[counter], end=" ")
+        correct_letters += 1
+      else:
+        print(" ", end = " ")
+      counter += 1
+
+#Welcome and Category Selection
 print("""
  _                                                       
 | |                                            
@@ -66,34 +131,25 @@ print("""
                     __/ |                      
                    |___/                       """)
 print()
-print('Choose a categorery')
+print('Choose a category')
 print('A for animals')
 print('S for sports')
 print('R for random')
 option = input("Enter the category: ")
-#Wordlist is choosen
-if option == 'a':
+#Wordlist is chosen
+if option == 'a' or 'A':
     word_list = animals
-elif option =='s':
+elif option =='s' or 'S':
     word_list = sports
 else:
     word_list = random_words
+word = random.choice(word_list)
 
-def game_run(): #Main gameplay loop
-  word = random.choice(word_list) #Chooses the word
-  alphabet = 'abcdefghijklmnopqrstuvwxyz'
-  letters_guessed = []
-  tries = 6
-  guessed = False
-  print()
-  print()
-  print("the word contains", len(word), 'letters')
-  print()
-  print(len(word) * '_')
-  print(letters_guessed)
-  print(f"You have this many tries left {tries}")
-  #guess loop
-  while guessed == False:
-    guess = input("Enter a letter: ").lower
-    
 game_run()
+
+if guessed is True:
+  print(f"Congratulations, you win! The word was {word}!")
+  print()
+else:
+  print()
+  print(f"Game over! The word was {word}!")
