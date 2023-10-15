@@ -154,10 +154,10 @@ while True:
   if guessed is True:
     print(f"Congratulations, you win! The word was {word}!")
     print()
+    break
   else:
     print()
     print(f"Game over! The word was {word}!")
-  
   
   try_again = input("Press 1 to try again, 0 to exit. ")
   try:
