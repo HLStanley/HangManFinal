@@ -145,7 +145,11 @@ else:
     word_list = random_words
 word = random.choice(word_list)
 
-game_run()
+while True:
+  game_run()
+  try_again = int(input("Press 1 to try again, 0 to exit. "))
+  if try_again == 0:
+    break
 
 if guessed is True:
   print(f"Congratulations, you win! The word was {word}!")
