@@ -140,13 +140,14 @@ while True:
   print('R for random')
   option = input("Enter the category: ")
 #Wordlist is chosen
-  if option == 'a' or 'A':
-      word_list = animals
-  elif option =='s' or 'S':
-      word_list = sports
+  if option.lower() == 'a':
+    word_list = animals
+  elif option.lower() =='s':
+    word_list = sports
+  elif option.lower() =='r':
+    word_list = random_words
   else:
-      option == 'r' or 'R'
-      word_list == random_words
+    print("Error! Please only input a, s, or r to choose the category!")
   word = random.choice(word_list)
 
   game_run()
