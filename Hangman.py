@@ -142,6 +142,7 @@ if option == 'a' or 'A':
 elif option =='s' or 'S':
     word_list = sports
 else:
+    option == 'r' or 'R'
     word_list = random_words
 word = random.choice(word_list)
 
