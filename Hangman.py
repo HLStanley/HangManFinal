@@ -39,6 +39,7 @@ while True:
   def game_run():
     alphabet = 'abcdefghijklmnopqrstuvwxyz'
     letters_guessed = []
+    correct_letters = []
     letters_correct = alphabet in word
     tries = 6
     guessed = False
@@ -60,19 +61,24 @@ while True:
       if guess in word:
         display_hangman(tries)
         letters_guessed.append(guess)
+        correct_letters.append(guess)
         letters_correct = display_word(letters_guessed)
         display_lines()
+        
   #If user has an incorrect letter guess
       else:
         tries -= 1
+        if tries == 0:
+          break
         letters_guessed.append(guess)
         display_hangman(tries)
         letters_correct = display_word(letters_guessed)
         display_lines()
-        if tries == 0:
-          break
-        #If user has guessed the whole word
         
+      if set(word) == set(correct_letters):
+        global GUESSED
+        GUESSED = True
+        break
         
 #Displays lines underneath letters for clarity
   def display_lines():  
@@ -140,15 +146,15 @@ while True:
       print("=========")
 
   def display_word(letters_guessed):
-      counter = 0
-      correct_letters = 0
-      for char in word:
-        if(char in letters_guessed):
-          print(word[counter], end=" ")
-          correct_letters += 1
-        else:
-          print(" ", end = " ")
-        counter += 1
+    counter = 0
+    correct_letters = 0
+    for char in word:
+      if(char in letters_guessed):
+        print(word[counter], end=" ")
+        correct_letters += 1
+      else:
+        print(" ", end = " ")
+      counter += 1
   game_run()
   
   #Win and Loose
