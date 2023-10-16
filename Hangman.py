@@ -6,7 +6,7 @@ while True:
   sports = ['basketball','football','soccer','hockey','rugby','tennis','golf','chess','fencing','volleyball','handball','lacrosse']
   random_words = ['wrathful','hippopotomonstrosesquippedaliophobia','supercalifragilisticexpialidocious','monday','rocks','moon','magic','xerox','zero','alpha','random','hangman','zetta','market','hello','rain']
   word_list = []
-  guessed = False
+  GUESSED = False
   
   #Greeting
   print("""
@@ -49,7 +49,7 @@ while True:
     display_lines()
 
   #Guess loop
-    while not guessed:
+    while guessed == False:
       print("\nLetters guessed thus far: ")
       for letter in letters_guessed:
         print(letter, end=" ")
@@ -71,14 +71,14 @@ while True:
         display_lines()
         if tries == 0:
           break
-    
+        #If user has guessed the whole word
         
-    
+        
 #Displays lines underneath letters for clarity
   def display_lines():  
-      print("\r")
-      for char in word:
-        print("\u203E", end=" ")
+    print("\r")
+    for char in word:
+      print("\u203E", end=" ")
 
 #Displays hangman ASCII art based on amount of incorrect answers
   def display_hangman(tries): 
@@ -150,8 +150,9 @@ while True:
           print(" ", end = " ")
         counter += 1
   game_run()
+  
   #Win and Loose
-  if guessed == True:
+  if GUESSED == True:
     print(f"Congratulations, you win! The word was {word}!")
     print()
   else:
@@ -160,7 +161,7 @@ while True:
   #Try Again
   try_again = input("Press 1 to try again, 0 to exit. ")
   try:
-      try_again = int(try_again)  # non-numeric input from user could otherwise crash at this point
+      try_again = int(try_again)
       if try_again == 0:
           break # break out of this while loop
   except:
